@@ -48,11 +48,15 @@ class Game {
 
         // Background Music - MP3 LOKAL (Simple & Reliable!)
         // Letakkan file music.mp3 di folder assets/
-        this.bgMusic = new Audio('assets/music.mp3');
+        this.bgMusic = new Audio('./assets/music.mp3');
         this.bgMusic.loop = true;
         this.bgMusic.volume = 0.3; // 30% volume
         this.musicReady = false;
+        this.musicStarted = false;
         this.musicMuted = false;
+
+        // Preload music
+        this.bgMusic.load();
 
         // Load level
         this.loadLevel();
@@ -145,21 +149,25 @@ class Game {
     setupMusicStart() {
         // Music akan start saat user interact pertama kali (klik atau keypress)
         const startMusic = () => {
-            this.bgMusic.play().then(() => {
-                this.musicReady = true;
-                console.log('🎵 Music started! Press M to mute/unmute');
-            }).catch(e => {
-                console.log('Click anywhere to start music');
-            });
+            if (!this.musicStarted) {
+                this.bgMusic.play().then(() => {
+                    this.musicReady = true;
+                    this.musicStarted = true;
+                    console.log('🎵 Music started! Press M to mute/unmute');
+                }).catch(e => {
+                    console.warn('⚠️ Music autoplay blocked:', e.message);
+                    console.log('👆 Click anywhere or press any key to start music');
+                });
 
-            // Remove listener setelah music start
-            document.removeEventListener('click', startMusic);
-            document.removeEventListener('keydown', startMusic);
+                // Remove listener setelah music start
+                document.removeEventListener('click', startMusic);
+                document.removeEventListener('keydown', startMusic);
+            }
         };
 
         // Listen untuk click atau keypress pertama
-        document.addEventListener('click', startMusic);
-        document.addEventListener('keydown', startMusic);
+        document.addEventListener('click', startMusic, { once: true });
+        document.addEventListener('keydown', startMusic, { once: true });
     }
 
     update() {
@@ -285,6 +293,21 @@ class Game {
         this.ctx.fillStyle = '#000000';
         this.ctx.font = '16px Arial';
         this.ctx.fillText('Panah/WASD: Gerak | Spasi/Up: Lompat | M: Music | ESC: Keluar', 10, 20);
+
+        // Music status indicator
+        if (!this.musicStarted) {
+            this.ctx.fillStyle = '#FF6600';
+            this.ctx.font = 'bold 18px Arial';
+            this.ctx.fillText('🎵 Klik atau tekan tombol untuk memulai musik!', 10, 45);
+        } else if (this.musicMuted) {
+            this.ctx.fillStyle = '#666666';
+            this.ctx.font = '14px Arial';
+            this.ctx.fillText('🔇 Music: OFF (tekan M untuk nyalakan)', 10, 45);
+        } else {
+            this.ctx.fillStyle = '#00AA00';
+            this.ctx.font = '14px Arial';
+            this.ctx.fillText('🔊 Music: ON (tekan M untuk matikan)', 10, 45);
+        }
 
         // Game Over
         if (this.gameOver) {
