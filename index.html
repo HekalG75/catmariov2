@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Cat Mario - Game platformer bergaya Cat Mario yang bisa dimainkan di browser">
+    <meta name="keywords" content="cat mario, platformer game, browser game, javascript game">
+    <meta name="author" content="Your Name">
+    <!-- Permissions Policy untuk menghilangkan warning -->
+    <meta http-equiv="Permissions-Policy"
+        content="autoplay=*, encrypted-media=*, accelerometer=*, gyroscope=*, picture-in-picture=*, clipboard-write=*">
+    <title>Cat Mario V2</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+
+        <main>
+            <div class="game-wrapper">
+                <canvas id="gameCanvas"></canvas>
+            </div>
+
+        </main>
+
+    </div>
+
+    <!-- Load JavaScript files -->
+    <script src="gameObjects.js"></script>
+    <script src="player.js"></script>
+    <script src="levelConfig.js"></script>
+    <script src="game.js"></script>
+</body>
+
+</html>
