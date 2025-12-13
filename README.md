@@ -48,7 +48,7 @@ Proyek ini dibuat untuk tujuan pembelajaran.
 
 ## 👨‍💻 Developer
 
-Dibuat dengan ❤️ oleh [Your Name]
+HekalG75
 
 ---
 
