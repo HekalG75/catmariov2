@@ -67,6 +67,9 @@ class Game {
         // Setup music start on user interaction
         this.setupMusicStart();
 
+        // Setup mobile touch controls
+        this.setupMobileControls();
+
         // Start game loop
         this.lastTime = 0;
         this.running = true;
@@ -168,6 +171,45 @@ class Game {
         // Listen untuk click atau keypress pertama
         document.addEventListener('click', startMusic, { once: true });
         document.addEventListener('keydown', startMusic, { once: true });
+    }
+
+    setupMobileControls() {
+        // Get all control buttons
+        const buttons = document.querySelectorAll('.control-btn');
+
+        buttons.forEach(button => {
+            const key = button.getAttribute('data-key');
+
+            // Handle touch start (button press)
+            const handleTouchStart = (e) => {
+                e.preventDefault(); // Prevent default touch behavior
+                this.player.keys[key] = true;
+
+                // Visual feedback
+                button.style.transform = 'translateY(4px)';
+            };
+
+            // Handle touch end (button release)
+            const handleTouchEnd = (e) => {
+                e.preventDefault();
+                this.player.keys[key] = false;
+
+                // Reset visual feedback
+                button.style.transform = '';
+            };
+
+            // Add event listeners for touch
+            button.addEventListener('touchstart', handleTouchStart, { passive: false });
+            button.addEventListener('touchend', handleTouchEnd, { passive: false });
+            button.addEventListener('touchcancel', handleTouchEnd, { passive: false });
+
+            // Also support mouse for testing on desktop
+            button.addEventListener('mousedown', handleTouchStart);
+            button.addEventListener('mouseup', handleTouchEnd);
+            button.addEventListener('mouseleave', handleTouchEnd);
+        });
+
+        console.log('🎮 Mobile controls initialized!');
     }
 
     update() {

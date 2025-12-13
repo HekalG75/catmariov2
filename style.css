@@ -215,3 +215,103 @@ footer p {
 .container {
     animation: fadeIn 0.5s ease-out;
 }
+
+/* ========================================
+   MOBILE TOUCH CONTROLS
+   ======================================== */
+
+.mobile-controls {
+    display: none; /* Hidden by default, shown on mobile */
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 10px;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    border-radius: 15px;
+    margin-top: 20px;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+.controls-left,
+.controls-right {
+    display: flex;
+    gap: 15px;
+}
+
+.control-btn {
+    width: 70px;
+    height: 70px;
+    border: none;
+    border-radius: 15px;
+    background: linear-gradient(145deg, #667eea, #764ba2);
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 6px 0 #5568d3, 0 8px 20px rgba(102, 126, 234, 0.4);
+    transition: all 0.1s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.control-btn:active {
+    transform: translateY(4px);
+    box-shadow: 0 2px 0 #5568d3, 0 4px 10px rgba(102, 126, 234, 0.4);
+    background: linear-gradient(145deg, #5568d3, #6639a0);
+}
+
+.control-btn span {
+    pointer-events: none;
+}
+
+.control-jump {
+    width: 90px;
+    height: 70px;
+    font-size: 16px;
+    background: linear-gradient(145deg, #ff6b6b, #ee5a6f);
+    box-shadow: 0 6px 0 #d63447, 0 8px 20px rgba(255, 107, 107, 0.4);
+}
+
+.control-jump:active {
+    box-shadow: 0 2px 0 #d63447, 0 4px 10px rgba(255, 107, 107, 0.4);
+    background: linear-gradient(145deg, #d63447, #c92a40);
+}
+
+/* Show mobile controls on touch devices or small screens */
+@media (max-width: 768px), (hover: none) {
+    .mobile-controls {
+        display: flex;
+    }
+}
+
+/* Extra small screens - make buttons slightly smaller */
+@media (max-width: 400px) {
+    .control-btn {
+        width: 60px;
+        height: 60px;
+        font-size: 20px;
+    }
+    
+    .control-jump {
+        width: 75px;
+        height: 60px;
+        font-size: 14px;
+    }
+    
+    .controls-left,
+    .controls-right {
+        gap: 10px;
+    }
+    
+    .mobile-controls {
+        gap: 15px;
+        padding: 15px 5px;
+    }
+}
+
