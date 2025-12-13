@@ -36,8 +36,15 @@ header h1 {
 }
 
 @keyframes bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
 }
 
 .subtitle {
@@ -162,20 +169,20 @@ footer p {
     header h1 {
         font-size: 2em;
     }
-    
+
     .subtitle {
         font-size: 1em;
     }
-    
+
     main {
         padding: 20px;
     }
-    
+
     #gameCanvas {
         max-width: 100%;
         height: auto;
     }
-    
+
     .controls-grid {
         grid-template-columns: 1fr;
     }
@@ -185,15 +192,15 @@ footer p {
     body {
         padding: 10px;
     }
-    
+
     header h1 {
         font-size: 1.5em;
     }
-    
+
     main {
         padding: 15px;
     }
-    
+
     .controls-info h2,
     .info-section h2 {
         font-size: 1.4em;
@@ -206,6 +213,7 @@ footer p {
         opacity: 0;
         transform: translateY(20px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -221,7 +229,8 @@ footer p {
    ======================================== */
 
 .mobile-controls {
-    display: none; /* Hidden by default, shown on mobile */
+    display: none;
+    /* Hidden by default, shown on mobile */
     justify-content: space-between;
     align-items: center;
     gap: 20px;
@@ -283,10 +292,17 @@ footer p {
     background: linear-gradient(145deg, #d63447, #c92a40);
 }
 
-/* Show mobile controls on touch devices or small screens */
-@media (max-width: 768px), (hover: none) {
+/* Show mobile controls on small screens (tablets and phones) */
+@media (max-width: 768px) {
     .mobile-controls {
-        display: flex;
+        display: flex !important;
+    }
+}
+
+/* Also show on any touch-capable device */
+@media (pointer: coarse) {
+    .mobile-controls {
+        display: flex !important;
     }
 }
 
@@ -297,21 +313,20 @@ footer p {
         height: 60px;
         font-size: 20px;
     }
-    
+
     .control-jump {
         width: 75px;
         height: 60px;
         font-size: 14px;
     }
-    
+
     .controls-left,
     .controls-right {
         gap: 10px;
     }
-    
+
     .mobile-controls {
         gap: 15px;
         padding: 15px 5px;
     }
 }
-
