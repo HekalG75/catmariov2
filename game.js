@@ -139,6 +139,20 @@ class Game {
         document.addEventListener('keyup', (e) => {
             this.player.keys[e.key] = false;
         });
+
+        // Touch/Click to restart (untuk mobile)
+        this.canvas.addEventListener('click', () => {
+            if (this.gameOver || this.win) {
+                this.resetGame();
+            }
+        });
+
+        this.canvas.addEventListener('touchend', (e) => {
+            if (this.gameOver || this.win) {
+                e.preventDefault();
+                this.resetGame();
+            }
+        });
     }
 
     toggleMusic() {
@@ -361,9 +375,9 @@ class Game {
             this.ctx.textAlign = 'center';
             this.ctx.fillText('GAME OVER!', SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
 
-            this.ctx.fillStyle = '#000000';
+            this.ctx.fillStyle = '#FFFFFF';
             this.ctx.font = '24px Arial';
-            this.ctx.fillText('Tekan R untuk restart', SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 + 50);
+            this.ctx.fillText('Tekan R atau Tap Layar untuk restart', SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 + 50);
             this.ctx.textAlign = 'left';
         }
 
@@ -377,9 +391,9 @@ class Game {
             this.ctx.textAlign = 'center';
             this.ctx.fillText('KAMU MENANG!', SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
 
-            this.ctx.fillStyle = '#000000';
+            this.ctx.fillStyle = '#FFFFFF';
             this.ctx.font = '24px Arial';
-            this.ctx.fillText('Tekan R untuk main lagi', SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 + 50);
+            this.ctx.fillText('Tekan R atau Tap Layar untuk main lagi', SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 + 50);
             this.ctx.textAlign = 'left';
         }
     }
