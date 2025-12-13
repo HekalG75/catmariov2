@@ -15,7 +15,7 @@ Cat Mario V2 adalah game platformer yang menantang dengan berbagai rintangan dan
 
 2. Buka file `index.html` di browser Anda
 
-3. Atau kunjungi versi online di: [GitHub Pages URL]
+3. Atau kunjungi versi online di: [https://hekalg75.github.io/catmariov2/]
 
 ## 🎯 Kontrol
 
