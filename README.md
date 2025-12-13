@@ -42,14 +42,7 @@ catmariov2/
 └── assets/             # Asset gambar dan audio
 ```
 
-## 📝 Lisensi
-
-Proyek ini dibuat untuk tujuan pembelajaran.
 
 ## 👨‍💻 Developer
 
 HekalG75
-
----
-
-⭐ Jangan lupa beri bintang jika Anda suka proyek ini!
